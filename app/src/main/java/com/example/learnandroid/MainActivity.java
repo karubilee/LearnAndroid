@@ -1,17 +1,18 @@
 package com.example.learnandroid;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.learnandroid.RecyclerView.Activity.Test2Activity;
+import com.example.learnandroid.RecyclerView.Activity.TestActivity;
 import com.example.learnandroid.RecyclerView.Adapter.MainRecycleViewAdapter;
 import com.example.learnandroid.RecyclerView.Data.MainRecycleViewItemData;
 
@@ -22,10 +23,13 @@ public class MainActivity extends AppCompatActivity {
 
     private List<MainRecycleViewItemData> data = new ArrayList<>();
 
+    private static String TEST_DATA_STRING = "testDataString";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initItemData();
         RecyclerView recyclerView = findViewById(R.id.main_RecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -33,33 +37,46 @@ public class MainActivity extends AppCompatActivity {
         MainRecycleViewAdapter adapter = new MainRecycleViewAdapter(data);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClick((v, i) -> {
+            Intent intent = new Intent();
+            switch (i) {
+                case 0:
+                    intent.setClass(v.getContext(), TestActivity.class);
+                    intent.putExtra(TEST_DATA_STRING, "TestData");
+                    break;
+                case 1:
+                    Test2Activity.actionStart(MainActivity.this, "后面activity启动", "");
+                    return;
+                case 2:
+                    Intent intentV = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("http://www.baidu.com"));
+                    v.getContext().startActivity(intentV);
+                    return;
+                case 3:
+                    intent.setClass(MainActivity.this, TestActivity.class);
+                    intent.putExtra(TEST_DATA_STRING, "startActivityForResult");
+                    startActivityForResult(intent, 1);
+                    return;
+                default:
+                    break;
+            }
+            v.getContext().startActivity(intent);
+        });
     }
 
     private void initItemData() {
-        data.add(new MainRecycleViewItemData("title","this is aboutxxxx item ,be strong"));
-        data.add(new MainRecycleViewItemData("title1","this is aboutxxxx item ,be strong"));
-        data.add(new MainRecycleViewItemData("title2","this is aboutxxxx item ,be strong"));
+        data.add(new MainRecycleViewItemData("TestActivity", "this is for test TestActivity"));
+        data.add(new MainRecycleViewItemData("TestActivity2", "this is for test actionstart"));
+        data.add(new MainRecycleViewItemData("开启手机browser", "this is for 隐式浏览器"));
+        data.add(new MainRecycleViewItemData("TestActivity", "this is for 有回调返回"));
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            String returnData = data.getStringExtra(TEST_DATA_STRING);
+            Toast.makeText(this, returnData, Toast.LENGTH_LONG).show();
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
