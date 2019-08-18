@@ -1,5 +1,6 @@
 package com.example.learnandroid.RecyclerView.Data;
 
+
 public class MainRecycleViewItemData {
     private String title;
     private String detail;
@@ -16,4 +17,5 @@ public class MainRecycleViewItemData {
     public String getDetail() {
         return detail;
     }
+
 }
