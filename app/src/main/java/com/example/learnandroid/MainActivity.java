@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.learnandroid.RecyclerView.Activity.Test2Activity;
 import com.example.learnandroid.RecyclerView.Activity.TestActivity;
+import com.example.learnandroid.RecyclerView.Activity.Transition.TransitionActivity;
 import com.example.learnandroid.RecyclerView.Adapter.MainRecycleViewAdapter;
 import com.example.learnandroid.RecyclerView.Data.MainRecycleViewItemData;
 
@@ -57,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra(TEST_DATA_STRING, "startActivityForResult");
                     startActivityForResult(intent, 1);
                     return;
+                case 4:
+                    intent.setClass(MainActivity.this, TransitionActivity.class);
+                    intent.putExtra(TEST_DATA_STRING, "TransitionActivity");
+                    break;
                 default:
                     break;
             }
@@ -64,11 +69,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     private void initItemData() {
         data.add(new MainRecycleViewItemData("TestActivity", "this is for test TestActivity"));
         data.add(new MainRecycleViewItemData("TestActivity2", "this is for test actionstart"));
         data.add(new MainRecycleViewItemData("开启手机browser", "this is for 隐式浏览器"));
         data.add(new MainRecycleViewItemData("TestActivity", "this is for 有回调返回"));
+        data.add(new MainRecycleViewItemData("TransitionActivity", "this is for 转场动画"));
     }
 
     @Override

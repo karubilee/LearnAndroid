@@ -13,6 +13,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:appComponentFactory">
+        <activity android:name=".RecyclerView.Activity.Transition.TransitionActivity2"></activity>
+        <activity android:name=".RecyclerView.Activity.Transition.TransitionActivity" />
         <activity android:name=".RecyclerView.Activity.Test2Activity" />
         <activity android:name=".RecyclerView.Activity.TestActivity" />
         <activity
