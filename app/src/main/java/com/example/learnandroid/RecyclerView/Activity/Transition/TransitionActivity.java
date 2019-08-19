@@ -46,6 +46,7 @@ public class TransitionActivity extends BaseActivity {
     public void onButtonClick(View v) {
         switch (v.getId()) {
             //https://blog.csdn.net/qq_37043246/article/details/77838450
+            //https://developer.android.com/training/transitions/start-activity.html
             case R.id.transition_button1:
                 ActivityOptionsCompat compat = ActivityOptionsCompat.makeCustomAnimation(this,R.animator.slide_in_right,R.animator.slide_out_left);
                 ActivityCompat.startActivity(this, new Intent(this,TransitionActivity2.class),compat.toBundle());
