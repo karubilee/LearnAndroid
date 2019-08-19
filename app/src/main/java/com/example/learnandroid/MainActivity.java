@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.learnandroid.RecyclerView.Activity.Fragment.FragmentActivityTest;
 import com.example.learnandroid.RecyclerView.Activity.Test2Activity;
 import com.example.learnandroid.RecyclerView.Activity.TestActivity;
 import com.example.learnandroid.RecyclerView.Activity.Transition.TransitionActivity;
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
                     intent.setClass(MainActivity.this, TransitionActivity.class);
                     intent.putExtra(TEST_DATA_STRING, "TransitionActivity");
                     break;
+                case 5:
+                    intent.setClass(MainActivity.this, FragmentActivityTest.class);
+                    break;
                 default:
                     break;
             }
@@ -75,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
         data.add(new MainRecycleViewItemData("TestActivity2", "this is for test actionstart"));
         data.add(new MainRecycleViewItemData("开启手机browser", "this is for 隐式浏览器"));
         data.add(new MainRecycleViewItemData("TestActivity", "this is for 有回调返回"));
-        data.add(new MainRecycleViewItemData("TransitionActivity", "this is for 转场动画"));
+        data.add(new MainRecycleViewItemData("TransitionActivity", "this is for TransitionActivity"));
+        data.add(new MainRecycleViewItemData("Fragment", "this is for Fragment"));
     }
 
     @Override
