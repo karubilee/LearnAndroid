@@ -1,6 +1,8 @@
 package com.example.learnandroid;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -15,6 +17,8 @@ import com.example.learnandroid.RecyclerView.Activity.Fragment.FragmentActivityT
 import com.example.learnandroid.RecyclerView.Activity.Test2Activity;
 import com.example.learnandroid.RecyclerView.Activity.TestActivity;
 import com.example.learnandroid.RecyclerView.Activity.Transition.TransitionActivity;
+import com.example.learnandroid.RecyclerView.Activity.broadcast.BroadCastActivity;
+import com.example.learnandroid.RecyclerView.Activity.broadcast.MyBroadcastReceiver;
 import com.example.learnandroid.RecyclerView.Adapter.MainRecycleViewAdapter;
 import com.example.learnandroid.RecyclerView.Data.MainRecycleViewItemData;
 
@@ -31,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initItemData();
         RecyclerView recyclerView = findViewById(R.id.main_RecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -66,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
                 case 5:
                     intent.setClass(MainActivity.this, FragmentActivityTest.class);
                     break;
+                case 6:
+                    intent.setClass(MainActivity.this, BroadCastActivity.class);
+                    break;
                 default:
                     break;
             }
@@ -81,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         data.add(new MainRecycleViewItemData("TestActivity", "this is for 有回调返回"));
         data.add(new MainRecycleViewItemData("TransitionActivity", "this is for TransitionActivity"));
         data.add(new MainRecycleViewItemData("Fragment", "this is for Fragment"));
+        data.add(new MainRecycleViewItemData("My_BROADCAST", "this is for My_BROADCAST"));
     }
 
     @Override
@@ -91,4 +98,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, returnData, Toast.LENGTH_LONG).show();
         }
     }
+
 }
