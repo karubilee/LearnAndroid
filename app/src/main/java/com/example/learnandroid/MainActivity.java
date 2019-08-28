@@ -19,6 +19,7 @@ import com.example.learnandroid.RecyclerView.Activity.TestActivity;
 import com.example.learnandroid.RecyclerView.Activity.Transition.TransitionActivity;
 import com.example.learnandroid.RecyclerView.Activity.broadcast.BroadCastActivity;
 import com.example.learnandroid.RecyclerView.Activity.broadcast.MyBroadcastReceiver;
+import com.example.learnandroid.RecyclerView.Activity.filePersistence.FilePersistenceTest;
 import com.example.learnandroid.RecyclerView.Adapter.MainRecycleViewAdapter;
 import com.example.learnandroid.RecyclerView.Data.MainRecycleViewItemData;
 
@@ -72,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 case 6:
                     intent.setClass(MainActivity.this, BroadCastActivity.class);
                     break;
+                case 7:
+                    intent.setClass(MainActivity.this, FilePersistenceTest.class);
+                    break;
                 default:
                     break;
             }
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         data.add(new MainRecycleViewItemData("TransitionActivity", "this is for TransitionActivity"));
         data.add(new MainRecycleViewItemData("Fragment", "this is for Fragment"));
         data.add(new MainRecycleViewItemData("My_BROADCAST", "this is for My_BROADCAST"));
+        data.add(new MainRecycleViewItemData("filePersistence", "this is for filePersistence"));
     }
 
     @Override
