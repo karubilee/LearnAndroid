@@ -21,6 +21,10 @@ public class BroadCastActivity extends BaseActivity {
         broadcast();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     //broadcast
     private void broadcast(){
@@ -30,11 +34,6 @@ public class BroadCastActivity extends BaseActivity {
         mMyBroadcastRecvier =  new MyBroadcastReceiver();
         //注册广播接收者的对象
         registerReceiver(mMyBroadcastRecvier, mIntentFilter);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     @Override
